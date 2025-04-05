@@ -1,11 +1,11 @@
 /*
 Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/spf13/cobra"
 )
@@ -13,15 +13,19 @@ import (
 // divCmd represents the div command
 var divCmd = &cobra.Command{
 	Use:   "div",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Divide two integers",
+	Long: `Divide two integers.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("div called")
+		n1,err1 := strconv.Atoi(args[0])
+		n2,err2 :=  strconv.Atoi(args[1])
+		if err1 != nil || err2 != nil{
+			fmt.Println("Error:Put valid numbers")
+		}
+		if n2 == 0{
+			fmt.Println("Error: Cannot divide by zero")
+		}
+		fmt.Printf("%d / %d = %d\n",n1,n2,n1/n2)
+
 	},
 }
 
